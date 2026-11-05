@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ evento.nombre_evento }} - Detalle{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <!-- Tarjeta de Información del Evento -->
+        <div class="card shadow-sm border-0 p-4 mb-4">
+            <h2 class="text-primary fw-bold mb-3">{{ evento.nombre_evento }}</h2>
+            <p class="text-secondary fs-5 mb-2"><strong>📍 Lugar:</strong> {{ evento.lugar }}</p>
+            <p class="text-secondary fs-5 mb-0"><strong>📅 Fecha y Hora:</strong> {{ evento.eve_fecha_hora }}</p>
+        </div>
+
+        <h4 class="fw-bold mb-3">🎫 Localidades Disponibles</h4>
+        
+        <!-- Cuadrícula de Localidades -->
+        <div class="row row-cols-1 row-cols-md-2 g-3 mb-4">
+            {% for localidad in localidades %}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body d-flex flex-column">
+                        <!-- Usamos loc_zona -->
+                        <h5 class="card-title fw-bold text-dark">{{ localidad.loc_zona }}</h5>
+                        
+                        <!-- Usamos loc_precio y loc_cupo_total -->
+                        <p class="card-text text-muted mb-1">Precio: <strong>${{ localidad.loc_precio }}</strong></p>
+                        <p class="card-text text-muted mb-3">Disponibles: <strong>{{ localidad.loc_cupo_total }}</strong></p>
+                        
+                        <a href="{% url 'comprar_localidad' localidad.id %}" class="btn btn-dark mt-auto w-100">Comprar Boleta</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-warning text-center" role="alert">
+                    No hay localidades configuradas para este evento todavía.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'lista_eventos' %}" class="btn btn-outline-secondary">← Volver al catálogo</a>
+    </div>
+</div>
+{% endblock %}

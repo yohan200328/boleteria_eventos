@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis Compras - Sistema de Boletería{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <h2 class="fw-bold mb-4">🎫 Historial de Mis Compras</h2>
+
+        {% if compras %}
+        <div class="table-responsive shadow-sm rounded">
+            <table class="table table-hover align-middle bg-white border">
+                <thead class="table-dark">
+                    <tr>
+                        <th># Compra</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in compras %}
+                    <tr>
+                        <td class="fw-bold">#{{ compra.pk }}</td>
+                        <td>{{ compra.com_fecha }}</td>
+                        <td>{{ compra.cliente.cli_nombre }} {{ compra.cliente.cli_apellido }}</td>
+                        <td class="text-success fw-bold">${{ compra.com_total }}</td>
+                        <td>
+                            <span class="badge bg-success">{{ compra.com_estado }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            No tienes compras registradas todavía. ¡Anímate a comprar una boleta!
+        </div>
+        {% endif %}
+
+        <div class="mt-4">
+            <a href="{% url 'lista_eventos' %}" class="btn btn-outline-secondary">← Volver al catálogo de eventos</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
