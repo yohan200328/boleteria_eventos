@@ -22,7 +22,11 @@
                 <tbody>
                     {% for compra in compras %}
                     <tr>
+<<<<<<< HEAD
                         <td class="fw-bold">#{{ forloop.counter }}</td>
+=======
+                        <td class="fw-bold">#{{ compra.pk }}</td>
+>>>>>>> dfabd3f5f8ca9d6f0c492ebdc6a32b4c126b3163
                         <td>{{ compra.com_fecha }}</td>
                         <td>{{ compra.cliente.cli_nombre }} {{ compra.cliente.cli_apellido }}</td>
                         <td class="text-success fw-bold">${{ compra.com_total }}</td>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -52,3 +53,8 @@ def iniciar_sesion(request):
 def cerrar_sesion(request):
     logout(request)
     return redirect('lista_eventos')
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> dfabd3f5f8ca9d6f0c492ebdc6a32b4c126b3163
